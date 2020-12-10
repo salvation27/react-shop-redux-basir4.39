@@ -14,8 +14,12 @@ class App extends React.Component {
   state = {
     products: products,
     size:'',
-    sort:''
+    sort:'',
+    color:'',
+    cartItems:[]
   }
+
+
 sortProducts =(e)=>{
 this.setState(state=>({
   sort:e.target.value,
@@ -35,8 +39,8 @@ this.setState(state=>({
     -1
   ),
 }))
-
 }
+
 sizeProducts=(e)=>{
   if(e.target.value ===''){
     this.setState({
@@ -49,10 +53,50 @@ sizeProducts=(e)=>{
       products:products.filter(product=>product.availableSizes.indexOf(e.target.value)>=0)
     })
   }
-  
+}
+
+colorProducts = (e) =>{
+  if(e.target.value === ''){
+    this.setState({
+      sort:'',
+      color:e.target.value,
+      products: products,
+    })
+  } else {
+    this.setState({
+      
+      color:e.target.value,
+      products:products.filter(item=>item.color === e.target.value)
+    })
+  }
+}
+
+// добавляет в корзину продукт
+
+addToCart = (product) => {
+  const cartItems = this.state.cartItems.slice()
+  let alreadyInCart = false
+  cartItems.forEach(item=>{
+    if(item._id===product._id){
+      item.count++
+      alreadyInCart = true
+    }
+  })
+  if(!alreadyInCart){
+    cartItems.push({...product, count:1})
+  }
+  this.setState({
+    cartItems
+  })
 }
 
 
+removeFromCart = (item) => {
+ const cartItems = this.state.cartItems.slice()
+ this.setState({
+  cartItems:cartItems.filter(x => x._id !== item._id)
+ })
+}
 
  render(){
   return (
@@ -67,10 +111,17 @@ sizeProducts=(e)=>{
         sort ={this.state.sort}
         sizeProducts={this.sizeProducts}
         sortProducts={this.sortProducts}
+        color={this.state.color}
+        colorProducts ={this.colorProducts}
         />
       </div>
       <main>
-        <Content products={this.state.products} />
+        <Content 
+        products={this.state.products} 
+        cartItems={this.state.cartItems} 
+        addToCart={this.addToCart}
+        removeFromCart={this.removeFromCart}
+        />
       </main>
       <footer>
         all rigth reserved

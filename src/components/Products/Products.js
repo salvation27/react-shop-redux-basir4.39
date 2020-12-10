@@ -3,15 +3,14 @@ import Product from './Product'
  
 export default class Products extends Component {
   render() {
-   
-    const{products} = this.props
+    const{products,addToCart} = this.props
     return (
       <div>
         <ul className="products">
             {
               products.map((product,i)=>{
                 return(
-                  <Product product={product}  key={i}/>
+                  <Product product={product} addToCart={addToCart} key={i}/>
                 )
               })
             }

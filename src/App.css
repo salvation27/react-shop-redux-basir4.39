@@ -262,3 +262,6 @@ th {
   border:1px solid red;
   margin: 10px;
 }
+.flex {
+  display: flex;
+}
