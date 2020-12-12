@@ -7,3 +7,6 @@
 
 товар корзины в localStorage 
 
+2.12 - Анимация react-reveal
+
+2.26- Detail MODAl

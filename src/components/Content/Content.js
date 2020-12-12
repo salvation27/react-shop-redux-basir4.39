@@ -2,7 +2,7 @@ import React from 'react'
 import Products from '../Products/Products'
 import Cart from '../Cart/Cart'
 
-const Content = ({products,cartItems,addToCart,removeFromCart,addToCart2}) => {
+const Content = ({products,cartItems,addToCart,removeFromCart,createOrder}) => {
 
   return (
     <div className='content'>
@@ -10,7 +10,7 @@ const Content = ({products,cartItems,addToCart,removeFromCart,addToCart2}) => {
         <Products products={products} addToCart={addToCart}/>
       </div>
       <div className="sidebar">
-        <Cart cartItems={cartItems} removeFromCart={removeFromCart} addToCart={addToCart}  />
+        <Cart cartItems={cartItems} removeFromCart={removeFromCart} addToCart={addToCart} createOrder={createOrder} />
       </div>
     </div>
   )

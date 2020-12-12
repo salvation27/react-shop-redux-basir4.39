@@ -19,6 +19,10 @@ class App extends React.Component {
     cartItems: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')):[]
   }
 
+createOrder =(order)=>{
+  alert('saver order for' + order.name)
+  // console.log(order);
+  }
 
 sortProducts =(e)=>{
 this.setState(state=>({
@@ -125,6 +129,7 @@ removeFromCart = (item) => {
         cartItems={this.state.cartItems} 
         addToCart={this.addToCart}
         removeFromCart={this.removeFromCart}
+        createOrder={this.createOrder}
         />
       </main>
       <footer>

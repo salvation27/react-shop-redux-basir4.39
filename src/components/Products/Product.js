@@ -1,18 +1,20 @@
 import React from 'react'
 
-const Product = ({product,addToCart}) => {
+
+const Product = ({product,addToCart,openModal}) => {
   return (
+    
     <div className='product'>
-      <a href="/">
+      <div href="/" onClick={()=>openModal(product)}>
          <img src={product.image} alt=""/>
         <p>{product.title}</p>
-      </a>
+      </div>
       <div className="product-price">
            <div>{product.color}</div>  
            <div className='flex'>{
-           product.availableSizes.map(item=>{
+           product.availableSizes.map((item,i)=>{
              return(
-               <div>{item},</div>
+               <div key={i}>{item},</div>
              )
            })
            }</div> 
@@ -25,6 +27,7 @@ const Product = ({product,addToCart}) => {
            className='button primary'>Add to Cart</button>
       </div>
     </div>
+  
   )
 }
 
