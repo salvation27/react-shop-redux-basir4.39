@@ -16,7 +16,7 @@ class App extends React.Component {
     size:'',
     sort:'',
     color:'',
-    cartItems:[]
+    cartItems: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')):[]
   }
 
 
@@ -88,6 +88,7 @@ addToCart = (product) => {
   this.setState({
     cartItems
   })
+  localStorage.setItem('cartItems',JSON.stringify(cartItems))
 }
 
 
@@ -96,7 +97,10 @@ removeFromCart = (item) => {
  this.setState({
   cartItems:cartItems.filter(x => x._id !== item._id)
  })
+ localStorage.setItem('cartItems',JSON.stringify(cartItems))
 }
+
+
 
  render(){
   return (
